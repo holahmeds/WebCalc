@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@import 'src/styles.scss';
+
+div.display {
+	margin: auto;
+	height: 100px;
+
+	text-align: right;
+	font-size: 40px;
+}
+mat-card {
+	margin: auto;
+	width: 300px;
+}
