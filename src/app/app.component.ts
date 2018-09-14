@@ -7,6 +7,7 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
 	displayText: string = "0";
+	readonly displaySize = 15;
 
 	items: string[] = ["0"];
 	last_item_number: boolean = true;

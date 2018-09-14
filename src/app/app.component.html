@@ -1,7 +1,9 @@
 <mat-tab-group>
   <mat-tab label="Calculator">
-    <mat-card>
-      <div class="display">{{displayText}}</div>
+    <div class="calc-container">
+      <div class="display">
+        {{ (displayText.length>displaySize) ? '..'+(displayText | slice:displayText.length-displaySize:displayText.length) : displayText }}
+      </div>
 
       <mat-grid-list cols="5" rowHeight="2:1">
         <mat-grid-tile *ngFor="let button of buttons">
@@ -9,14 +11,15 @@
           <div *ngIf="button == null"></div>
         </mat-grid-tile>
       </mat-grid-list>
-    </mat-card>
+    </div>
   </mat-tab>
 
   <mat-tab label="History">
     <mat-list>
-      <mat-list-item *ngFor="let calc of history">
+      <mat-list-item *ngFor="let calc of history; last as last">
         <h1 mat-line>{{calc.result}}</h1>
         <p mat-line>{{calc.expression}}</p>
+        <mat-divider *ngIf="!last"></mat-divider>
       </mat-list-item>
     </mat-list>
   </mat-tab>
