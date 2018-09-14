@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -53,5 +53,17 @@ export class AppComponent {
 		}
 
 		this.updateDisplay();
+	}
+
+	@HostListener('document:keydown', ['$event'])
+	onKey(event: KeyboardEvent) {
+		let key = event.key;
+		if (this.buttons.includes(key)) {
+			this.onButtonPress(key);
+		} else if (key == "Enter") {
+			this.onButtonPress("=");
+		} else if (key == "Escape") {
+			this.onButtonPress("clear");
+		}
 	}
 }
