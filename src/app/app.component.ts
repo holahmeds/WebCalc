@@ -12,10 +12,10 @@ export class AppComponent {
 	last_item_number: boolean = true;
 
 	buttons: string[] = [
-		"7", "8", "9", "/",
-		"4", "5", "6", "*",
-		"1", "2", "3", "-",
-		".", "0", "=", "+",
+		 "7", "8", "9", "/", "clear",
+		 "4", "5", "6", "*",    null,
+		 "1", "2", "3", "-",    null,
+		null, "0", ".", "+",     "=",
 	];
 
 	isNumber(s: string) {
@@ -23,20 +23,21 @@ export class AppComponent {
 	}
 
 	updateDisplay() {
-		let text = "";
-		for (var i = 0; i < this.items.length - 1; ++i) {
-			text = text + this.items[i] + " ";
-		}
-		text = text + this.items[this.items.length - 1];
-
-		this.displayText = text;
+		this.displayText = this.items.join(" ");
+	}
+	setItems(n: number) {
+		let ns = n.toString();
+		this.displayText = ns;
+		this.items = [ns];
 	}
 
 	onButtonPress(button: string) {
 		if (button == "=") {
 			let result = eval(this.displayText);
-			this.items = [result];
-			this.displayText = result;
+			this.setItems(result);
+			return;
+		} else if (button == "clear") {
+			this.setItems(0);
 			return;
 		}
 
