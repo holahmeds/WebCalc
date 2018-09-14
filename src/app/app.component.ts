@@ -11,12 +11,18 @@ export class AppComponent {
 	items: string[] = ["0"];
 	last_item_number: boolean = true;
 
+	history: PastCalculations[] = [];
+
 	buttons: string[] = [
 		 "7", "8", "9", "/", "clear",
 		 "4", "5", "6", "*",    null,
 		 "1", "2", "3", "-",    null,
 		null, "0", ".", "+",     "=",
 	];
+
+	ngOnInit() {
+		this.history = JSON.parse(localStorage.getItem("history"));
+	}
 
 	isNumber(s: string) {
 		return !isNaN(Number(s));
@@ -34,6 +40,10 @@ export class AppComponent {
 	onButtonPress(button: string) {
 		if (button == "=") {
 			let result = eval(this.displayText);
+
+			this.history.push({result: result, expression: this.displayText});
+			localStorage.setItem("history", JSON.stringify(this.history));
+
 			this.setItems(result);
 			return;
 		} else if (button == "clear") {
@@ -66,4 +76,9 @@ export class AppComponent {
 			this.onButtonPress("clear");
 		}
 	}
+}
+
+interface PastCalculations {
+	result: string,
+	expression: string,
 }
