@@ -22,7 +22,10 @@ export class AppComponent {
 	];
 
 	ngOnInit() {
-		this.history = JSON.parse(localStorage.getItem("history"));
+        let json = localStorage.getItem("history");
+        if (json != null) {
+            this.history = JSON.parse(json);
+        }
 	}
 
 	isNumber(s: string) {
