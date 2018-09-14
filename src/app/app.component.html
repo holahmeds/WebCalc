@@ -1,9 +1,9 @@
 <mat-card>
-  <div class="display">0</div>
+  <div class="display">{{displayText}}</div>
 
   <mat-grid-list cols="4" rowHeight="2:1">
     <mat-grid-tile *ngFor="let button of buttons">
-      <button mat-button>{{button}}</button>
+      <button mat-button (click)="onButtonPress(button)">{{button}}</button>
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
