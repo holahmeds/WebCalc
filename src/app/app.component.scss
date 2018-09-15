@@ -1,14 +1,19 @@
 
-div.display {
+.display {
 	margin: auto;
 	height: 80px;
 	padding: 20px;
 
+	overflow: hidden;
+}
+.display-inner {
 	text-align: right;
 	font-size: 40px;
+	white-space: nowrap;
+	float: right;
 }
+
 .calc-container {
 	margin: auto;
 	max-width: 400px;
-	padding: 20px;
 }

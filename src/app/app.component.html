@@ -2,7 +2,9 @@
   <mat-tab label="Calculator">
     <div class="calc-container">
       <div class="display">
-        {{ (displayText.length>displaySize) ? '..'+(displayText | slice:displayText.length-displaySize:displayText.length) : displayText }}
+        <div class="display-inner">
+          {{ (displayText.length>displaySize) ? '..'+(displayText | slice:displayText.length-displaySize:displayText.length) : displayText }}
+        </div>
       </div>
 
       <mat-grid-list cols="5" rowHeight="2:1">
