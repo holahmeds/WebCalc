@@ -58,11 +58,26 @@ export class AppComponent {
 		let button_is_number = this.isNumber(button);
 
 		if (button_is_number != this.last_item_number) {
-			this.items.push(button);
-			this.last_item_number = !this.last_item_number;
+			if (this.last_item_number && button === '.') {
+				let lastItem = this.items[this.items.length - 1];
+
+				if (!lastItem.includes('.')) {
+					lastItem = lastItem + '.';
+					this.items[this.items.length - 1] = lastItem;
+				}
+			} else {
+				this.items.push(button);
+				this.last_item_number = !this.last_item_number;
+			}
 		} else if (button_is_number) {
 			let lastItem = this.items[this.items.length - 1];
-			lastItem = Number(lastItem + button).toString();
+
+			if (lastItem === '0') {
+				lastItem = button;
+			} else {
+				lastItem = lastItem + button;
+			}
+
 			this.items[this.items.length - 1] = lastItem;
 		}
 
